@@ -15,11 +15,7 @@ InstallMethod(SemigroupHomomorphismByImages, "for two semigroups and two lists",
 function(S, T, gens, imgs)
   local map, R, rel, fun;
 
-  if not IsSemigroup(S) then
-    ErrorNoReturn("the 1st argument is not a semigroup");
-  elif not IsSemigroup(T) then
-    ErrorNoReturn("the 2nd argument is not a semigroup");
-  elif not ForAll(gens, x -> x in S) then
+  if not ForAll(gens, x -> x in S) then
     ErrorNoReturn("the 3rd argument (a list) must consist of elements "
                   "of the 1st argument (a semigroup)");
   elif Size(Semigroup(gens)) <> Size(S) then
