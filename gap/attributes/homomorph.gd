@@ -8,5 +8,5 @@
 #############################################################################
 ##
 
-DeclareOperation("SemigroupHomomorphismByImages", 
+DeclareOperation("SemigroupHomomorphismByImages",
                  [IsSemigroup, IsSemigroup, IsList, IsList]);
