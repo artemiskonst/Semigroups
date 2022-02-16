@@ -10,11 +10,35 @@
 ##
 
 # This file contains a method for finding a homomorphism between semigroups
+#
+BindGlobal("DoSHBINC2", function(S, T, gens, imgs)
+  local hom;
+  # if HasGeneratorsOfGroup(G)
+  #    and IsIdenticalObj(GeneratorsOfGroup(G),mapi[1]) then
+  #   Append(obj_args, [PreImagesRange, G]);
+  #   filter := filter and IsTotal and HasPreImagesRange;
+  # fi;
+  #
+  # if HasGeneratorsOfGroup(H)
+  #    and IsIdenticalObj(GeneratorsOfGroup(H),mapi[2]) then
+  #   Append(obj_args, [ImagesSource, H]);
+  #   filter := filter and IsSurjective and HasImagesSource;
+  # fi;
+
+  hom := Objectify(NewType(GeneralMappingsFamily(ElementsFamily(FamilyObj(S)),
+                                                 ElementsFamily(FamilyObj(T))),
+                           IsSemigroupHomomorphismByImages), rec());
+  SetSource(hom, S);
+  SetRange(hom, T);
+  SetMappingGeneratorsImages(hom, [Immutable(gens), Immutable(imgs)]);
+
+  return hom;
+end);
 
 InstallMethod(SemigroupHomomorphismByImages, "for two semigroups and two lists",
 [IsSemigroup, IsSemigroup, IsList, IsList],
 function(S, T, gens, imgs)
-  local map, R, rel, fun;
+  local map, R, rel;
 
   if not ForAll(gens, x -> x in S) then
     ErrorNoReturn("the 3rd argument (a list) must consist of elements ",
@@ -43,15 +67,20 @@ function(S, T, gens, imgs)
     fi;
   od;
 
-  # fun : S -> T (GAP function, input is an element x of S, and the output is the
-  # element of T equal to phi(x)
-  # where phi(x) is the homomorphism from S to T
-  fun := function(x)
-    if not x in S then
-      ErrorNoReturn("the argument is not an element of the semigroup");
-    fi;
-    return EvaluateWord(imgs, Factorization(S, x));
-  end;
+  return SemigroupHomomorphismByImagesNC2(S, T, gens, imgs);
+end);
 
-  return MagmaHomomorphismByFunctionNC(S, T, fun);
+InstallMethod(SemigroupHomomorphismByImagesNC2,
+"for two semigroups and two lists",
+[IsSemigroup, IsSemigroup, IsList, IsList], DoSHBINC2);
+
+InstallMethod(ImageElm, "for a semigroup homom. by images and element",
+[IsSemigroupHomomorphismByImages, IsMultiplicativeElement],
+function(hom, x)
+  if not x in Source(hom) then
+    ErrorNoReturn("the 2nd argument is not an element of the source of the ",
+    "1st argument (semigroup homom. by images)");
+  fi;
+  return EvaluateWord(MappingGeneratorsImages(hom)[2],
+                      Factorization(Source(hom), x));
 end);

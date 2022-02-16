@@ -10,4 +10,14 @@
 ##
 
 DeclareOperation("SemigroupHomomorphismByImages",
-                 [IsSemigroup, IsSemigroup, IsList, IsList]);
+        [IsSemigroup, IsSemigroup, IsList, IsList]);
+
+DeclareOperation("SemigroupHomomorphismByImagesNC2",
+        [IsSemigroup, IsSemigroup, IsList, IsList]);
+
+DeclareRepresentation("IsSemigroupHomomorphismByImages",
+        IsSemigroupGeneralMapping and IsSPGeneralMapping and
+        IsAttributeStoringRep, []);
+
+DeclareOperation("ImageElm",
+        [IsSemigroupHomomorphismByImages, IsMultiplicativeElement]);
