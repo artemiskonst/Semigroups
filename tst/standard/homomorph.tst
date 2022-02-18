@@ -83,11 +83,13 @@ fail
 gap> J := FullTransformationMonoid(4);
 <full transformation monoid of degree 4>
 gap> SemigroupHomomorphismByImages(S, J, gens, imgs);
-MappingByFunction( <full transformation monoid of degree 3>, <full transformat\
-ion monoid of degree 4>, function( x ) ... end )
+<general mapping: Monoid( [ Transformation( [ 2, 3, 1 ] ), 
+  Transformation( [ 2, 1 ] ), Transformation( [ 1, 2, 1 ] ) ] ) -> Monoid( 
+[ Transformation( [ 2, 3, 4, 1 ] ), Transformation( [ 2, 1 ] ), 
+  Transformation( [ 1, 2, 3, 1 ] ) ] ) >
 gap> J := FullTransformationMonoid(2);
 <full transformation monoid of degree 2>
 
 #
 gap> SEMIGROUPS.StopTest();
-gap> STOP_TEST("Semigroups package: standard/isomorph.tst");
+gap> STOP_TEST("Semigroups package: standard/homomorph.tst");
