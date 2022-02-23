@@ -83,10 +83,10 @@ fail
 gap> J := FullTransformationMonoid(4);
 <full transformation monoid of degree 4>
 gap> SemigroupHomomorphismByImages(S, J, gens, imgs);
-<general mapping: Monoid( [ Transformation( [ 2, 3, 1 ] ), 
-  Transformation( [ 2, 1 ] ), Transformation( [ 1, 2, 1 ] ) ] ) -> Monoid( 
-[ Transformation( [ 2, 3, 4, 1 ] ), Transformation( [ 2, 1 ] ), 
-  Transformation( [ 1, 2, 3, 1 ] ) ] ) >
+[ IdentityTransformation, Transformation( [ 2, 3, 1 ] ), 
+  Transformation( [ 2, 1 ] ), Transformation( [ 1, 2, 1 ] ) ] -> 
+[ Transformation( [ 1, 1, 1 ] ), Transformation( [ 1, 1, 1 ] ), 
+  Transformation( [ 1, 1, 1 ] ), Transformation( [ 1, 1, 1 ] ) ]
 gap> J := FullTransformationMonoid(2);
 <full transformation monoid of degree 2>
 
