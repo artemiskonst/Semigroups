@@ -49,7 +49,7 @@ end);
 
 InstallMethod(SemigroupHomomorphismByImagesNC2,
 "for two semigroups and two lists",
-[IsSemigroup, IsSemigroup, IsList, IsList], 
+[IsSemigroup, IsSemigroup, IsList, IsList],
 function(S, T, gens, imgs)
   local hom;
   # if HasGeneratorsOfGroup(G)
@@ -96,7 +96,7 @@ InstallMethod(PreImagesRange, "for SHBI",
 InstallMethod(PreImagesRepresentative,
 "for a semigroup homom. by images and an element in the range",
 [IsSemigroupHomomorphismByImages, IsMultiplicativeElement],
-function(hom,x)
+function(hom, x)
   if not x in Range(hom) then
     ErrorNoReturn("the 2nd argument is not an element of the range of the ",
     "1st argument (semigroup homom. by images)");
@@ -110,8 +110,8 @@ end);
 InstallMethod(ViewObj, "for SHBI",
     [IsSemigroupHomomorphismByImages],
 function(hom)
-local mapi;
-  mapi:=MappingGeneratorsImages(hom);
+  local mapi;
+  mapi := MappingGeneratorsImages(hom);
   View(mapi[1]);
   Print(" -> ");
   View(mapi[2]);
@@ -120,16 +120,16 @@ end);
 InstallMethod(String, "for SHBI",
     [IsSemigroupHomomorphismByImages],
 function(hom)
-local mapi;
-  mapi:=MappingGeneratorsImages(hom);
-  return Concatenation(String(mapi[1])," -> ",String(mapi[2]));
+  local mapi;
+  mapi := MappingGeneratorsImages(hom);
+  return Concatenation(String(mapi[1]), " -> ", String(mapi[2]));
 end);
 
 InstallMethod(PrintObj, "for semigroup homom. by images",
   [IsSemigroupHomomorphismByImages],
 function(hom)
-local mapi;
-  mapi:=MappingGeneratorsImages(hom);
+  local mapi;
+  mapi := MappingGeneratorsImages(hom);
   Print("SemigroupHomomorphismByImages( ",
           Source(hom), ", ", Range(hom), ", ",
           mapi[1], ", ", mapi[2], " )");
