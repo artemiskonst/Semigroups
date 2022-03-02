@@ -135,12 +135,12 @@ function(hom)
           mapi[1], ", ", mapi[2], " )");
 end);
 
-InstallMethod( \=, "compare homom. by images", IsIdenticalObj,
-    [ IsSemigroupHomomorphismByImages, IsSemigroupHomomorphismByImages],
+InstallMethod(\=, "compare homom. by images", IsIdenticalObj,
+    [IsSemigroupHomomorphismByImages, IsSemigroupHomomorphismByImages],
     function(hom1, hom2)
     local i;
 
-    if Source(hom1) <> Source(hom2) 
+    if Source(hom1) <> Source(hom2)
        or Range(hom1) <> Range(hom2)
        or PreImagesRange(hom1) <> PreImagesRange(hom2)
        or ImagesSource(hom1) <> ImagesSource(hom2) then
@@ -148,6 +148,6 @@ InstallMethod( \=, "compare homom. by images", IsIdenticalObj,
     fi;
 
     hom1 := MappingGeneratorsImages(hom1);
-    return hom1[2] = List(hom1[1], i -> ImageElm(hom2,i));
+    return hom1[2] = List(hom1[1], i -> ImageElm(hom2, i));
 
     end);
