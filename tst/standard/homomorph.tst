@@ -90,6 +90,25 @@ gap> SemigroupHomomorphismByImages(S, J, gens, imgs);
 gap> J := FullTransformationMonoid(2);
 <full transformation monoid of degree 2>
 
-#
+# Tests with semigroups to the trivial semigroup
+gap> T := Semigroup(IdentityTransformation);
+<trivial transformation group of degree 0 with 1 generator>
+gap> S := GLM(2, 2);
+<general linear monoid 2x2 over GF(2)>
+gap> gens := GeneratorsOfSemigroup(S);
+[ Matrix(GF(2), [[Z(2)^0, 0*Z(2)], [0*Z(2), Z(2)^0]]), 
+  Matrix(GF(2), [[Z(2)^0, Z(2)^0], [0*Z(2), Z(2)^0]]), 
+  Matrix(GF(2), [[0*Z(2), Z(2)^0], [Z(2)^0, 0*Z(2)]]), 
+  Matrix(GF(2), [[Z(2)^0, 0*Z(2)], [0*Z(2), 0*Z(2)]]) ]
+gap> imgs := [];
+[  ]
+gap> for i in [1 .. Size(gens)] do Add(imgs, IdentityTransformation); od;
+gap> SemigroupHomomorphismByImages(S, T, gens, imgs);
+[ Matrix(GF(2), [[Z(2)^0, 0*Z(2)], [0*Z(2), Z(2)^0]]), 
+  Matrix(GF(2), [[Z(2)^0, Z(2)^0], [0*Z(2), Z(2)^0]]), 
+  Matrix(GF(2), [[0*Z(2), Z(2)^0], [Z(2)^0, 0*Z(2)]]), 
+  Matrix(GF(2), [[Z(2)^0, 0*Z(2)], [0*Z(2), 0*Z(2)]]) ] -> 
+[ IdentityTransformation, IdentityTransformation, IdentityTransformation, 
+  IdentityTransformation ]
 gap> SEMIGROUPS.StopTest();
 gap> STOP_TEST("Semigroups package: standard/homomorph.tst");
