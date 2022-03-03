@@ -107,6 +107,48 @@ function(hom, x)
                       Factorization(ImagesSource(hom), x));
 end);
 
+
+InstallMethod(PreImagesElm,
+"for a semigroup homom. by images and an element in the range",
+[IsSemigroupHomomorphismByImages, IsMultiplicativeElement],
+function(hom, x)
+  local preim, y;
+  if not x in Range(hom) then
+    ErrorNoReturn("the 2nd argument is not an element of the range of the ",
+                  "1st argument (semigroup homom. by images)");
+  elif not x in ImagesSource(hom) then
+    ErrorNoReturn("the 2nd argument is not mapped to by the 1st argument ", 
+                  "(semigroup homom. by images)");
+  fi;
+  preim := [];
+  for y in Source(hom) do
+    if ImageElm(hom, y) = x then
+      Add(preim, y);
+    fi;
+  od;
+  return preim;
+end);
+
+InstallMethod(PreImagesSet,
+"for a semigroup homom. by images and an element in the range", 
+[IsSemigroupHomomorphismByImages, IsList],
+function(hom, elms)
+  local y, preim;
+  if not IsSubsetSet(Range(hom), elms) then
+    ErrorNoReturn("the 2nd argument is not a subset of the range of the ",
+                  "1st argument (semigroup homom. by images)");
+  fi;
+  if not IsSubsetSet(ImagesSource(hom), elms) then
+    ErrorNoReturn("the 2nd argument is not a subset of the image of the ",
+                  "source of the 1st argument (semigroup homom. by images)");
+  fi;
+  preim := [];
+  for y in elms do
+    Append(preim, PreImagesElm(hom, y));
+  od;
+  return preim;
+end);
+
 InstallMethod(ViewObj, "for SHBI",
     [IsSemigroupHomomorphismByImages],
 function(hom)
@@ -150,4 +192,4 @@ InstallMethod(\=, "compare homom. by images", IsIdenticalObj,
     hom1 := MappingGeneratorsImages(hom1);
     return hom1[2] = List(hom1[1], i -> ImageElm(hom2, i));
 
-    end);
+end);

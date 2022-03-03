@@ -100,15 +100,33 @@ gap> gens := GeneratorsOfSemigroup(S);
   Matrix(GF(2), [[Z(2)^0, Z(2)^0], [0*Z(2), Z(2)^0]]), 
   Matrix(GF(2), [[0*Z(2), Z(2)^0], [Z(2)^0, 0*Z(2)]]), 
   Matrix(GF(2), [[Z(2)^0, 0*Z(2)], [0*Z(2), 0*Z(2)]]) ]
-gap> imgs := [];
-[  ]
-gap> for i in [1 .. Size(gens)] do Add(imgs, IdentityTransformation); od;
-gap> SemigroupHomomorphismByImages(S, T, gens, imgs);
+gap> imgs := ListX(gens, x -> IdentityTransformation);
+[ IdentityTransformation, IdentityTransformation, IdentityTransformation, 
+  IdentityTransformation ]
+gap> hom:= SemigroupHomomorphismByImages(S, T, gens, imgs);
 [ Matrix(GF(2), [[Z(2)^0, 0*Z(2)], [0*Z(2), Z(2)^0]]), 
   Matrix(GF(2), [[Z(2)^0, Z(2)^0], [0*Z(2), Z(2)^0]]), 
   Matrix(GF(2), [[0*Z(2), Z(2)^0], [Z(2)^0, 0*Z(2)]]), 
   Matrix(GF(2), [[Z(2)^0, 0*Z(2)], [0*Z(2), 0*Z(2)]]) ] -> 
 [ IdentityTransformation, IdentityTransformation, IdentityTransformation, 
   IdentityTransformation ]
+gap> PreImagesElm(hom, IdentityTransformation);
+[ Matrix(GF(2), [[Z(2)^0, 0*Z(2)], [0*Z(2), Z(2)^0]]), 
+  Matrix(GF(2), [[Z(2)^0, Z(2)^0], [0*Z(2), Z(2)^0]]), 
+  Matrix(GF(2), [[0*Z(2), Z(2)^0], [Z(2)^0, 0*Z(2)]]), 
+  Matrix(GF(2), [[Z(2)^0, 0*Z(2)], [0*Z(2), 0*Z(2)]]), 
+  Matrix(GF(2), [[Z(2)^0, Z(2)^0], [Z(2)^0, 0*Z(2)]]), 
+  Matrix(GF(2), [[0*Z(2), Z(2)^0], [Z(2)^0, Z(2)^0]]), 
+  Matrix(GF(2), [[0*Z(2), 0*Z(2)], [Z(2)^0, 0*Z(2)]]), 
+  Matrix(GF(2), [[Z(2)^0, Z(2)^0], [0*Z(2), 0*Z(2)]]), 
+  Matrix(GF(2), [[0*Z(2), Z(2)^0], [0*Z(2), 0*Z(2)]]), 
+  Matrix(GF(2), [[Z(2)^0, 0*Z(2)], [Z(2)^0, Z(2)^0]]), 
+  Matrix(GF(2), [[Z(2)^0, 0*Z(2)], [Z(2)^0, 0*Z(2)]]), 
+  Matrix(GF(2), [[0*Z(2), 0*Z(2)], [Z(2)^0, Z(2)^0]]), 
+  Matrix(GF(2), [[0*Z(2), 0*Z(2)], [0*Z(2), Z(2)^0]]), 
+  Matrix(GF(2), [[0*Z(2), 0*Z(2)], [0*Z(2), 0*Z(2)]]), 
+  Matrix(GF(2), [[Z(2)^0, Z(2)^0], [Z(2)^0, Z(2)^0]]), 
+  Matrix(GF(2), [[0*Z(2), Z(2)^0], [0*Z(2), Z(2)^0]]) ]
+
 gap> SEMIGROUPS.StopTest();
 gap> STOP_TEST("Semigroups package: standard/homomorph.tst");
