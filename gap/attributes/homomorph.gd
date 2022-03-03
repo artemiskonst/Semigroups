@@ -17,7 +17,4 @@ DeclareOperation("SemigroupHomomorphismByImagesNC2",
 
 DeclareRepresentation("IsSemigroupHomomorphismByImages",
         IsSemigroupGeneralMapping and IsSPGeneralMapping and
-        IsAttributeStoringRep, []);
-
-DeclareOperation("ImageElm",
-        [IsSemigroupHomomorphismByImages, IsMultiplicativeElement]);
+        IsAttributeStoringRep and IsSingleValued and IsTotal, []);

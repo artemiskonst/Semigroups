@@ -128,5 +128,45 @@ gap> PreImagesElm(hom, IdentityTransformation);
   Matrix(GF(2), [[Z(2)^0, Z(2)^0], [Z(2)^0, Z(2)^0]]), 
   Matrix(GF(2), [[0*Z(2), Z(2)^0], [0*Z(2), Z(2)^0]]) ]
 
+# Test with quotient semigroup
+gap> S := Semigroup([Transformation([2, 1, 5, 1, 5]),
+>       Transformation([1, 1, 1, 5, 3]), Transformation([2, 5, 3, 5, 3])]);;
+gap> congs := CongruencesOfSemigroup(S);;
+gap> cong := congs[3];;
+gap> T := S / cong;;
+gap> gens := GeneratorsOfSemigroup(S);;
+gap> images := List(gens, gen -> EquivalenceClassOfElement(cong, gen));;
+gap> hom := SemigroupHomomorphismByImagesNC2(S, T, gens, images);;
+gap> gens[1] ^ hom;              
+<congruence class of Transformation( [ 2, 1, 5, 1, 5 ] )>
+gap> ImageElm(hom, gens[1]);
+<congruence class of Transformation( [ 2, 1, 5, 1, 5 ] )>
+gap> IsSurjective(hom);
+true
+gap> hom1 := hom;;
+gap> hom1 = hom;
+true
+gap> gens2 := [gens[3], gens[1], gens[2]];;
+gap> images2 := [images[3], images[1], images[2]];;
+gap> hom2 := SemigroupHomomorphismByImages(Semigroup(gens2),
+>       Semigroup(images2), gens2, images2);;
+gap> hom = hom2;
+true
+
+# Test with transformation semigroup isomorphic to quotient semigroup above
+gap> map := IsomorphismTransformationSemigroup(ImagesSource(hom));;
+gap> K := Range(map);;
+gap> images3 := GeneratorsOfSemigroup(K);;
+gap> hom3 := SemigroupHomomorphismByImages(S, K, gens, images3);;
+gap> ImagesSource(hom3);
+<transformation semigroup of degree 7 with 3 generators>
+gap> PreImagesRange(hom3);
+<transformation semigroup of size 59, degree 5 with 3 generators>
+gap> PreImagesRepresentative(hom3, images3[2]);
+Transformation( [ 1, 1, 1, 5, 3 ] )
+gap> ImageElm(hom3, gens[1]);
+Transformation( [ 4, 5, 5, 1, 5, 5, 1 ] )
+gap> IsSurjective(hom3);
+true
 gap> SEMIGROUPS.StopTest();
 gap> STOP_TEST("Semigroups package: standard/homomorph.tst");
