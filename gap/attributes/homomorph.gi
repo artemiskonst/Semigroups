@@ -137,17 +137,24 @@ end);
 
 InstallMethod(\=, "compare homom. by images", IsIdenticalObj,
     [IsSemigroupHomomorphismByImages, IsSemigroupHomomorphismByImages],
-    function(hom1, hom2)
-    local i;
+function(hom1, hom2)
+  local i;
+  if Source(hom1) <> Source(hom2)
+      or Range(hom1) <> Range(hom2)
+      or PreImagesRange(hom1) <> PreImagesRange(hom2)
+      or ImagesSource(hom1) <> ImagesSource(hom2) then
+        return false;
+  fi;
+  hom1 := MappingGeneratorsImages(hom1);
+  return hom1[2] = List(hom1[1], i -> ImageElm(hom2, i));
+end);
 
-    if Source(hom1) <> Source(hom2)
-       or Range(hom1) <> Range(hom2)
-       or PreImagesRange(hom1) <> PreImagesRange(hom2)
-       or ImagesSource(hom1) <> ImagesSource(hom2) then
-      return false;
-    fi;
-
-    hom1 := MappingGeneratorsImages(hom1);
-    return hom1[2] = List(hom1[1], i -> ImageElm(hom2, i));
-
-    end);
+InstallMethod(IsSurjective, "for semigroup homom. by images",
+  [IsSemigroupHomomorphismByImages],
+function(hom)
+  if ImagesSource(hom) <> Range(hom) then
+    return false;
+  else
+    return true;
+  fi;
+end);
