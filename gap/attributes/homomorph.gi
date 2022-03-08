@@ -130,15 +130,15 @@ function(hom, x)
 end);
 
 InstallMethod(PreImagesSet,
-"for a semigroup homom. by images and an element in the range", 
+"for a semigroup homom. by images and a set of elements in the range", 
 [IsSemigroupHomomorphismByImages, IsList],
 function(hom, elms)
   local y, preim;
-  if not IsSubsetSet(Range(hom), elms) then
+  if not IsSubsetSet(AsList(Range(hom)), elms) then
     ErrorNoReturn("the 2nd argument is not a subset of the range of the ",
                   "1st argument (semigroup homom. by images)");
   fi;
-  if not IsSubsetSet(ImagesSource(hom), elms) then
+  if not IsSubsetSet(AsList(ImagesSource(hom)), elms) then
     ErrorNoReturn("the 2nd argument is not a subset of the image of the ",
                   "source of the 1st argument (semigroup homom. by images)");
   fi;

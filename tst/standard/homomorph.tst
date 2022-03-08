@@ -68,6 +68,8 @@ gap> Range(hom2) = S;
 true
 gap> Source(hom2) = S;
 true
+gap> ImagesSource(hom2) = S;
+true
 gap> map := hom2;;
 gap> ForAll(S, x -> ForAll(S, y -> (x * y) ^ map = x ^ map * y ^ map));
 true
@@ -82,13 +84,47 @@ fail
 # Tests with semigroups of different sizes
 gap> J := FullTransformationMonoid(4);
 <full transformation monoid of degree 4>
-gap> SemigroupHomomorphismByImages(S, J, gens, imgs);
+gap> hom := SemigroupHomomorphismByImages(S, J, gens, imgs);
 [ IdentityTransformation, Transformation( [ 2, 3, 1 ] ), 
   Transformation( [ 2, 1 ] ), Transformation( [ 1, 2, 1 ] ) ] -> 
 [ Transformation( [ 1, 1, 1 ] ), Transformation( [ 1, 1, 1 ] ), 
   Transformation( [ 1, 1, 1 ] ), Transformation( [ 1, 1, 1 ] ) ]
 gap> J := FullTransformationMonoid(2);
 <full transformation monoid of degree 2>
+gap> ImagesSource(hom);
+<transformation semigroup of degree 3 with 4 generators>
+gap> PreImagesElm(hom, Transformation([1, 1, 1]));
+[ Transformation( [ 1, 1, 1 ] ), Transformation( [ 1, 1, 2 ] ), 
+  Transformation( [ 1, 1 ] ), Transformation( [ 1, 2, 1 ] ), 
+  Transformation( [ 1, 2, 2 ] ), IdentityTransformation, 
+  Transformation( [ 1, 3, 1 ] ), Transformation( [ 1, 3, 2 ] ), 
+  Transformation( [ 1, 3, 3 ] ), Transformation( [ 2, 1, 1 ] ), 
+  Transformation( [ 2, 1, 2 ] ), Transformation( [ 2, 1 ] ), 
+  Transformation( [ 2, 2, 1 ] ), Transformation( [ 2, 2, 2 ] ), 
+  Transformation( [ 2, 2 ] ), Transformation( [ 2, 3, 1 ] ), 
+  Transformation( [ 2, 3, 2 ] ), Transformation( [ 2, 3, 3 ] ), 
+  Transformation( [ 3, 1, 1 ] ), Transformation( [ 3, 1, 2 ] ), 
+  Transformation( [ 3, 1, 3 ] ), Transformation( [ 3, 2, 1 ] ), 
+  Transformation( [ 3, 2, 2 ] ), Transformation( [ 3, 2, 3 ] ), 
+  Transformation( [ 3, 3, 1 ] ), Transformation( [ 3, 3, 2 ] ), 
+  Transformation( [ 3, 3, 3 ] ) ]
+gap> PreImagesSet(hom, [Transformation([1, 1, 1])]);
+[ Transformation( [ 1, 1, 1 ] ), Transformation( [ 1, 1, 2 ] ), 
+  Transformation( [ 1, 1 ] ), Transformation( [ 1, 2, 1 ] ), 
+  Transformation( [ 1, 2, 2 ] ), IdentityTransformation, 
+  Transformation( [ 1, 3, 1 ] ), Transformation( [ 1, 3, 2 ] ), 
+  Transformation( [ 1, 3, 3 ] ), Transformation( [ 2, 1, 1 ] ), 
+  Transformation( [ 2, 1, 2 ] ), Transformation( [ 2, 1 ] ), 
+  Transformation( [ 2, 2, 1 ] ), Transformation( [ 2, 2, 2 ] ), 
+  Transformation( [ 2, 2 ] ), Transformation( [ 2, 3, 1 ] ), 
+  Transformation( [ 2, 3, 2 ] ), Transformation( [ 2, 3, 3 ] ), 
+  Transformation( [ 3, 1, 1 ] ), Transformation( [ 3, 1, 2 ] ), 
+  Transformation( [ 3, 1, 3 ] ), Transformation( [ 3, 2, 1 ] ), 
+  Transformation( [ 3, 2, 2 ] ), Transformation( [ 3, 2, 3 ] ), 
+  Transformation( [ 3, 3, 1 ] ), Transformation( [ 3, 3, 2 ] ), 
+  Transformation( [ 3, 3, 3 ] ) ]
+gap> PreImagesRepresentative(hom, Transformation([1, 1, 1]));
+IdentityTransformation
 
 # Tests with semigroups to the trivial semigroup
 gap> T := Semigroup(IdentityTransformation);
@@ -164,6 +200,8 @@ gap> PreImagesRange(hom3);
 <transformation semigroup of size 59, degree 5 with 3 generators>
 gap> PreImagesRepresentative(hom3, images3[2]);
 Transformation( [ 1, 1, 1, 5, 3 ] )
+gap> PreImagesSet(hom3, images3{[2..3]});
+[ Transformation( [ 1, 1, 1, 5, 3 ] ), Transformation( [ 2, 5, 3, 5, 3 ] ) ]
 gap> ImageElm(hom3, gens[1]);
 Transformation( [ 4, 5, 5, 1, 5, 5, 1 ] )
 gap> IsSurjective(hom3);
