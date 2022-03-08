@@ -107,7 +107,6 @@ function(hom, x)
                       Factorization(ImagesSource(hom), x));
 end);
 
-
 InstallMethod(PreImagesElm,
 "for a semigroup homom. by images and an element in the range",
 [IsSemigroupHomomorphismByImages, IsMultiplicativeElement],
@@ -117,7 +116,7 @@ function(hom, x)
     ErrorNoReturn("the 2nd argument is not an element of the range of the ",
                   "1st argument (semigroup homom. by images)");
   elif not x in ImagesSource(hom) then
-    ErrorNoReturn("the 2nd argument is not mapped to by the 1st argument ", 
+    ErrorNoReturn("the 2nd argument is not mapped to by the 1st argument ",
                   "(semigroup homom. by images)");
   fi;
   preim := [];
