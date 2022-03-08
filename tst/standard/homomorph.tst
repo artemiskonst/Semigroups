@@ -81,6 +81,8 @@ gap> IsSurjective(hom2);
 true
 gap> IsInjective(hom2);
 true
+gap> IsBijective(hom2);
+true
 gap> x := ConstantTransformation(2, 1);
 Transformation( [ 1, 1 ] )
 gap> x ^ map;
@@ -137,6 +139,8 @@ IdentityTransformation
 gap> IsSurjective(hom);
 false
 gap> IsInjective(hom);
+false
+gap> IsBijective(hom);
 false
 
 # Tests with semigroups to the trivial semigroup
@@ -224,6 +228,8 @@ Transformation( [ 4, 5, 5, 1, 5, 5, 1 ] )
 gap> IsSurjective(hom3);
 true
 gap> IsInjective(hom3);
+false
+gap> IsBijective(hom3);
 false
 gap> gens4 := [gens[3], gens[1], gens[2]];;
 gap> images4 := [images3[3], images3[1], images3[2]];;
