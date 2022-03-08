@@ -193,7 +193,17 @@ end);
 InstallMethod(IsSurjective, "for semigroup homom. by images",
   [IsSemigroupHomomorphismByImages],
 function(hom)
-  if ImagesSource(hom) <> Range(hom) then
+  if Size(ImagesSource(hom)) <> Size(Range(hom)) then
+    return false;
+  else
+    return true;
+  fi;
+end);
+
+InstallMethod(IsInjective, "for semigroup homom. by images",
+  [IsSemigroupHomomorphismByImages],
+function(hom)
+  if Size(Source(hom)) <> Size(ImagesSource(hom)) then
     return false;
   else
     return true;
