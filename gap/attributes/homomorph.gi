@@ -109,7 +109,7 @@ end);
 
 InstallMethod(ImagesElm, "for a semigroup homom. by images and an element",
     [IsSemigroupHomomorphismByImages, IsMultiplicativeElement],
-    {hom, x} -> [ ImageElm(hom, x) ]);
+    {hom, x} -> [ImageElm(hom, x)]);
 
 InstallMethod(ImagesSet, "for a semigroup homom. by images and list of elements",
     [IsSemigroupHomomorphismByImages, IsList],
@@ -137,7 +137,7 @@ function(hom, x)
 end);
 
 InstallMethod(PreImagesSet,
-"for a semigroup homom. by images and a set of elements in the range", 
+"for a semigroup homom. by images and a set of elements in the range",
 [IsSemigroupHomomorphismByImages, IsList],
 function(hom, elms)
   local y, preim;
