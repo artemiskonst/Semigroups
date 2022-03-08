@@ -103,7 +103,7 @@ gap> gens := GeneratorsOfSemigroup(S);
 gap> imgs := ListX(gens, x -> IdentityTransformation);
 [ IdentityTransformation, IdentityTransformation, IdentityTransformation, 
   IdentityTransformation ]
-gap> hom:= SemigroupHomomorphismByImages(S, T, gens, imgs);
+gap> hom := SemigroupHomomorphismByImages(S, T, gens, imgs);
 [ Matrix(GF(2), [[Z(2)^0, 0*Z(2)], [0*Z(2), Z(2)^0]]), 
   Matrix(GF(2), [[Z(2)^0, Z(2)^0], [0*Z(2), Z(2)^0]]), 
   Matrix(GF(2), [[0*Z(2), Z(2)^0], [Z(2)^0, 0*Z(2)]]), 
@@ -167,6 +167,12 @@ Transformation( [ 1, 1, 1, 5, 3 ] )
 gap> ImageElm(hom3, gens[1]);
 Transformation( [ 4, 5, 5, 1, 5, 5, 1 ] )
 gap> IsSurjective(hom3);
+true
+gap> gens4 := [gens[3], gens[1], gens[2]];;
+gap> images4 := [images3[3], images3[1], images3[2]];;
+gap> hom4 := SemigroupHomomorphismByImages(Semigroup(gens4),
+>       Semigroup(images4), gens4, images4);;
+gap> hom4 = hom3;
 true
 gap> SEMIGROUPS.StopTest();
 gap> STOP_TEST("Semigroups package: standard/homomorph.tst");
