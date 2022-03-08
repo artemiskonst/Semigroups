@@ -107,6 +107,14 @@ function(hom, x)
                       Factorization(ImagesSource(hom), x));
 end);
 
+InstallMethod(ImagesElm, "for a semigroup homom. by images and an element",
+    [IsSemigroupHomomorphismByImages, IsMultiplicativeElement],
+    {hom, x} -> [ ImageElm(hom, x) ]);
+
+InstallMethod(ImagesSet, "for a semigroup homom. by images and list of elements",
+    [IsSemigroupHomomorphismByImages, IsList],
+    {hom, elms} -> List(elms, x -> ImageElm(hom, x)));
+
 InstallMethod(PreImagesElm,
 "for a semigroup homom. by images and an element in the range",
 [IsSemigroupHomomorphismByImages, IsMultiplicativeElement],
