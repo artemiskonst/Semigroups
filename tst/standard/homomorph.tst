@@ -28,7 +28,9 @@ gap> BruteForceHomoCheck := function(homo)
 > end;;
 gap> S := FullTransformationMonoid(3);
 <full transformation monoid of degree 3>
-gap> gens := GeneratorsOfSemigroup(S);;
+gap> gens := GeneratorsOfSemigroup(S);
+[ IdentityTransformation, Transformation( [ 2, 3, 1 ] ), 
+  Transformation( [ 2, 1 ] ), Transformation( [ 1, 2, 1 ] ) ]
 
 # Test for every generator in the first list is in the first semigroup
 gap> y := [IdentityTransformation, Transformation([2, 3, 1]),        
@@ -57,6 +59,8 @@ Error, the 3rd argument (a list) and the 4th argument (a list) are not the sam\
 e size
 
 # Tests with the same group
+gap> S := FullTransformationMonoid(3);;
+gap> gens := GeneratorsOfSemigroup(S);;
 gap> imgs := List([1 .. 4], x -> ConstantTransformation(3, 1));;
 gap> hom1 := SemigroupHomomorphismByImages(S, S, gens, imgs);;
 gap> Source(hom1) = S;
@@ -73,6 +77,10 @@ true
 gap> map := hom2;;
 gap> ForAll(S, x -> ForAll(S, y -> (x * y) ^ map = x ^ map * y ^ map));
 true
+gap> IsSurjective(hom2);
+true
+gap> IsInjective(hom2);
+true
 gap> x := ConstantTransformation(2, 1);
 Transformation( [ 1, 1 ] )
 gap> x ^ map;
@@ -82,15 +90,16 @@ gap> hom3 := SemigroupHomomorphismByImages(S, S, gens, imgs2);
 fail
 
 # Tests with semigroups of different sizes
-gap> J := FullTransformationMonoid(4);
-<full transformation monoid of degree 4>
+gap> S := FullTransformationMonoid(3);;
+gap> gens := GeneratorsOfSemigroup(S);;
+gap> J := FullTransformationMonoid(4);;
+gap> imgs := List([1 .. 4], x -> ConstantTransformation(3, 1));;
 gap> hom := SemigroupHomomorphismByImages(S, J, gens, imgs);
 [ IdentityTransformation, Transformation( [ 2, 3, 1 ] ), 
   Transformation( [ 2, 1 ] ), Transformation( [ 1, 2, 1 ] ) ] -> 
 [ Transformation( [ 1, 1, 1 ] ), Transformation( [ 1, 1, 1 ] ), 
   Transformation( [ 1, 1, 1 ] ), Transformation( [ 1, 1, 1 ] ) ]
-gap> J := FullTransformationMonoid(2);
-<full transformation monoid of degree 2>
+gap> J := FullTransformationMonoid(2);;
 gap> ImagesSource(hom);
 <transformation semigroup of degree 3 with 4 generators>
 gap> PreImagesElm(hom, Transformation([1, 1, 1]));
@@ -125,12 +134,14 @@ gap> PreImagesSet(hom, [Transformation([1, 1, 1])]);
   Transformation( [ 3, 3, 3 ] ) ]
 gap> PreImagesRepresentative(hom, Transformation([1, 1, 1]));
 IdentityTransformation
+gap> IsSurjective(hom);
+false
+gap> IsInjective(hom);
+false
 
 # Tests with semigroups to the trivial semigroup
-gap> T := Semigroup(IdentityTransformation);
-<trivial transformation group of degree 0 with 1 generator>
-gap> S := GLM(2, 2);
-<general linear monoid 2x2 over GF(2)>
+gap> T := Semigroup(IdentityTransformation);;
+gap> S := GLM(2, 2);;
 gap> gens := GeneratorsOfSemigroup(S);
 [ Matrix(GF(2), [[Z(2)^0, 0*Z(2)], [0*Z(2), Z(2)^0]]), 
   Matrix(GF(2), [[Z(2)^0, Z(2)^0], [0*Z(2), Z(2)^0]]), 
@@ -163,6 +174,10 @@ gap> PreImagesElm(hom, IdentityTransformation);
   Matrix(GF(2), [[0*Z(2), 0*Z(2)], [0*Z(2), 0*Z(2)]]), 
   Matrix(GF(2), [[Z(2)^0, Z(2)^0], [Z(2)^0, Z(2)^0]]), 
   Matrix(GF(2), [[0*Z(2), Z(2)^0], [0*Z(2), Z(2)^0]]) ]
+gap> IsSurjective(hom);
+true
+gap> IsInjective(hom);
+false
 
 # Test with quotient semigroup
 gap> S := Semigroup([Transformation([2, 1, 5, 1, 5]),
@@ -179,6 +194,8 @@ gap> ImageElm(hom, gens[1]);
 <congruence class of Transformation( [ 2, 1, 5, 1, 5 ] )>
 gap> IsSurjective(hom);
 true
+gap> IsInjective(hom);
+false
 gap> hom1 := hom;;
 gap> hom1 = hom;
 true
@@ -206,6 +223,8 @@ gap> ImageElm(hom3, gens[1]);
 Transformation( [ 4, 5, 5, 1, 5, 5, 1 ] )
 gap> IsSurjective(hom3);
 true
+gap> IsInjective(hom3);
+false
 gap> gens4 := [gens[3], gens[1], gens[2]];;
 gap> images4 := [images3[3], images3[1], images3[2]];;
 gap> hom4 := SemigroupHomomorphismByImages(Semigroup(gens4),
