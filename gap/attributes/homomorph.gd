@@ -15,6 +15,20 @@ DeclareOperation("SemigroupHomomorphismByImages",
 DeclareOperation("SemigroupHomomorphismByImagesNC2",
         [IsSemigroup, IsSemigroup, IsList, IsList]);
 
+DeclareOperation("SemigroupHomomorphismByFunction",
+        [IsSemigroup, IsSemigroup, IsFunction]);
+
+DeclareOperation("SemigroupHomomorphismByFunctionNC",
+        [IsSemigroup, IsSemigroup, IsFunction]);
+
+DeclareRepresentation("IsSemigroupHomomorphism2", 
+	IsSemigroupGeneralMapping and IsAttributeStoringRep and
+	IsSingleValued and IsTotal, []);
+
 DeclareRepresentation("IsSemigroupHomomorphismByImages",
         IsSemigroupGeneralMapping and IsSPGeneralMapping and
+        IsAttributeStoringRep and IsSingleValued and IsTotal, []);
+
+DeclareRepresentation("IsSemigroupHomomorphismByFunction",
+        IsSemigroupGeneralMapping and IsSPMappingByFunctionRep and
         IsAttributeStoringRep and IsSingleValued and IsTotal, []);

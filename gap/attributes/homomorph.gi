@@ -74,6 +74,29 @@ function(S, T, gens, imgs)
   return hom;
 end);
 
+InstallMethod(SemigroupHomomorphismByFunction, "for two semigroups and a function",
+[IsSemigroup, IsSemigroup, IsFunction],
+function(S, T, f)
+  for x in S do
+    if not f(x) in T then
+      return fail;
+    fi;
+  od;
+  return SemigroupHomomorphismByFunctionNC(S, T, f);
+end);
+
+InstallMethod(SemigroupHomomorphismByFunctionNC, "for two semigroups and a function",
+[IsSemigroup, IsSemigroup, IsFunction],
+function(S, T, f)
+  local hom;
+  hom := Objectify(NewType(GeneralMappingsFamily(ElementsFamily(FamilyObj(S)),
+                                                 ElementsFamily(FamilyObj(T))),
+                           IsSemigroupHomomorphismByFunction), rec(fun := f));
+  SetSource(hom, S);
+  SetRange(hom, T);
+  return hom;
+end);
+
 InstallMethod(ImageElm, "for a semigroup homom. by images and element",
 [IsSemigroupHomomorphismByImages, IsMultiplicativeElement],
 function(hom, x)
