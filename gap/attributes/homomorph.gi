@@ -31,6 +31,7 @@ function(S, T, gens, imgs)
                   "(a list) are not the same size");
   fi;
 
+  # in case of jumbled generators
   if GeneratorsOfSemigroup(S) <> gens then
     S := Semigroup(gens);
   fi;

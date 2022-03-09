@@ -8,7 +8,7 @@
 ##
 #############################################################################
 ##
-gap> START_TEST("Semigroups package: standard/homomorph.tst");
+gap> START_TEST("Semigroups package: standard/attributes/homomorph.tst");
 gap> LoadPackage("semigroups", false);;
 
 #
@@ -255,5 +255,34 @@ gap> hom3 := SemigroupHomomorphismByImages(Semigroup(gens3),
 >       Semigroup(images3), gens3, images3);;
 gap> hom3 = hom2;
 true
+
+# Test with jumbled generators
+gap> S := Semigroup([ Transformation( [ 2, 1, 5, 1, 5 ] ), Transformation( [ 1, 1, 1, 5, 3 ] ), Transformation( [ 2, 5, 3, 5, 3 ] ) ]);;
+gap> gens1 := GeneratorsOfSemigroup(S);;
+gap> congs := CongruencesOfSemigroup(S);;
+gap> cong := congs[3];;
+gap> T := S / cong;;
+gap> images1 := List(gens1, gen -> EquivalenceClassOfElement(cong, gen));;
+gap> hom1 := SemigroupHomomorphismByImagesNC2(S, T, gens1, images1);;
+gap> map := IsomorphismTransformationSemigroup(ImagesSource(hom1));;
+gap> K := Range(map);;
+gap> images2 := GeneratorsOfSemigroup(K);;
+gap> hom2 := SemigroupHomomorphismByImages(S, K, gens1, images2);;
+gap> gens1;
+[ Transformation( [ 2, 1, 5, 1, 5 ] ), Transformation( [ 1, 1, 1, 5, 3 ] ), 
+  Transformation( [ 2, 5, 3, 5, 3 ] ) ]
+gap> gens2 := [gens1[3], gens1[1], gens1[2]];
+[ Transformation( [ 2, 5, 3, 5, 3 ] ), Transformation( [ 2, 1, 5, 1, 5 ] ), 
+  Transformation( [ 1, 1, 1, 5, 3 ] ) ]
+gap> images2 := [images2[3], images2[1], images2[2]];
+[ Transformation( [ 6, 5, 5, 3, 5, 5, 3 ] ), 
+  Transformation( [ 4, 5, 5, 1, 5, 5, 1 ] ), 
+  Transformation( [ 5, 5, 5, 5, 5, 5, 2 ] ) ]
+gap> hom3 := SemigroupHomomorphismByImages(S, K, gens2, images2);
+[ Transformation( [ 2, 5, 3, 5, 3 ] ), Transformation( [ 2, 1, 5, 1, 5 ] ), 
+  Transformation( [ 1, 1, 1, 5, 3 ] ) ] -> 
+[ Transformation( [ 6, 5, 5, 3, 5, 5, 3 ] ), 
+  Transformation( [ 4, 5, 5, 1, 5, 5, 1 ] ), 
+  Transformation( [ 5, 5, 5, 5, 5, 5, 2 ] ) ]
 gap> SEMIGROUPS.StopTest();
-gap> STOP_TEST("Semigroups package: standard/homomorph.tst");
+gap> STOP_TEST("Semigroups package: standard/attributes/homomorph.tst");
