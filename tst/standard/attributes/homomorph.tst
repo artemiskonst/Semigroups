@@ -186,7 +186,8 @@ gap> F := F / [[F.1 ^ 4, F.1]];;
 gap> S := ReesZeroMatrixSemigroup(F, [[F.1]]);;
 gap> gens := GeneratorsOfSemigroup(S);; 
 gap> T := ReesZeroMatrixSemigroup(F, [[F.1 ^ 2]]);;
-gap> imgs := GeneratorsOfSemigroup(T);;
+gap> map := IsomorphismSemigroups(S, T);;
+gap> imgs := List(gens, x -> x ^ map);;
 gap> hom := SemigroupHomomorphismByImages(S, T, gens, imgs);;
 gap> BruteForceHomoCheck(hom);
 true
