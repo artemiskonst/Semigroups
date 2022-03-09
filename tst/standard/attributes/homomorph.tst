@@ -128,7 +128,7 @@ gap> hom := SemigroupHomomorphismByImages(S, T, gens, imgs);
 [ Transformation( [ 2, 1, 2, 3, 4 ] ) ] -> 
 [ <block bijection: [ 1, -2 ], [ 2, -1 ], [ 3, 4, -3, -6 ], [ 5, -4 ], 
      [ 6, -5 ]> ]
-gap> BruteForceHomoCheck(map);
+gap> BruteForceHomoCheck(hom);
 true
 
 # homomorph: SemigroupHomomorphismByImages, for simple semigroups
@@ -188,7 +188,7 @@ gap> gens := GeneratorsOfSemigroup(S);;
 gap> T := ReesZeroMatrixSemigroup(F, [[F.1 ^ 2]]);;
 gap> imgs := GeneratorsOfSemigroup(T);;
 gap> hom := SemigroupHomomorphismByImages(S, T, gens, imgs);;
-gap> BruteForceHomoCheck(map);
+gap> BruteForceHomoCheck(hom);
 true
 
 # for monogenic semigroups
