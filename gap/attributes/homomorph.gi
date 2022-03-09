@@ -31,6 +31,10 @@ function(S, T, gens, imgs)
                   "(a list) are not the same size");
   fi;
 
+  if GeneratorsOfSemigroup(S) <> gens then
+    S := Semigroup(gens);
+  fi;
+
   # maps S to a finitely presented semigroup
   map := IsomorphismFpSemigroup(S);   # S (source) -> fp semigroup (range)
   # List of relations of the above finitely presented semigroup (hence of S)
