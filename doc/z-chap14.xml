@@ -12,6 +12,18 @@
 
   <Section>
     <Heading>
+      Homomorphisms of arbitrary semigroups
+    </Heading>
+
+    <#Include Label = "SemigroupHomomorphismByImages">
+
+  </Section>
+
+  <!--**********************************************************************-->
+  <!--**********************************************************************-->
+
+  <Section>
+    <Heading>
       Isomorphisms of arbitrary semigroups
     </Heading>
 
