@@ -1,0 +1,257 @@
+#############################################################################
+##
+#W  homomorph.xml
+#Y  Copyright (C) 2022                               Artemis Konstantinidi
+##                                                         Chinmaya Nagpal
+##
+##  Licensing information can be found in the README file of this package.
+##
+#############################################################################
+##
+
+<#GAPDoc Label="SemigroupHomomorphismByImages">
+  <ManSection>
+    <Oper Name = "SemigroupHomomorphismByImages" Arg = "S, T, gens, imgs"/>
+    <Returns>
+      A semigroup homomorphism, or <K>fail</K>.
+    </Returns>
+    <Description>
+      This operation attempts to find a homomorphism from the semigroup <A>S</A>
+      to the semigroup <A>T</A>, by mapping <A> gens </A> to <A> imgs </A>. If it 
+      finds one, then it is returned, and if not, then <K>fail</K> is returned. <P/>
+      <Example><![CDATA[
+gap> S := FullTransformationMonoid(3);;
+gap> gens := GeneratorsOfSemigroup(S);;
+gap> J := FullTransformationMonoid(4);;
+gap> imgs := List([1 .. 4], x -> ConstantTransformation(3, 1));;
+gap> hom := SemigroupHomomorphismByImages(S, J, gens, imgs);
+[ IdentityTransformation, Transformation( [ 2, 3, 1 ] ), 
+  Transformation( [ 2, 1 ] ), Transformation( [ 1, 2, 1 ] ) ] -> 
+[ Transformation( [ 1, 1, 1 ] ), Transformation( [ 1, 1, 1 ] ), 
+  Transformation( [ 1, 1, 1 ] ), Transformation( [ 1, 1, 1 ] ) ]]]></Example>
+    </Description>
+  </ManSection>
+<#/GAPDoc>
+<#GAPDoc Label="SemigroupHomomorphismByImagesNC2">
+  <ManSection>
+    <Oper Name = "SemigroupHomomorphismByImagesNC2" Arg = "S, T, gens, imgs"/>
+    <Returns>
+      A mapping 
+      <Example>
+    </Returns>
+    <Description>
+      This operation returns a mapping from the semigroup <A>S</A> to the semigroup
+      <A>T</A>, by mapping <A> gens </A> to <A> imgs </A>, without checking it is a 
+      homomorphism.
+      <Example><![CDATA[]]></Example>
+    </Description>
+  </ManSection>
+<#/GAPDoc>
+<#GAPDoc Label="SemigroupHomomorphismByFunction">
+  <ManSection>
+    <Oper Name = "SemigroupHomomorphismByFunction" Arg = ""/>
+    <Returns>
+      
+    </Returns>
+    <Description>
+      
+      <Example><![CDATA[]]></Example>
+    </Description>
+  </ManSection>
+<#/GAPDoc>
+<#GAPDoc Label="SemigroupHomomorphismByFunctionNC">
+  <ManSection>
+    <Oper Name = "SemigroupHomomorphismByFunctionNC" Arg = ""/>
+    <Returns>
+      
+    </Returns>
+    <Description>
+      
+      <Example><![CDATA[]]></Example>
+    </Description>
+  </ManSection>
+<#/GAPDoc>
+<#GAPDoc Label="IsSemigroupHomomorphism2">
+  <ManSection>
+    <Filt Name = "IsSemigroupHomomorphism2" Arg = ""/>
+    <Returns>
+      
+    </Returns>
+    <Description>
+      
+      <Example><![CDATA[]]></Example>
+    </Description>
+  </ManSection>
+<#/GAPDoc>
+<#GAPDoc Label="IsSemigroupHomomorphismByImages">
+  <ManSection>
+    <Filt Name = "IsSemigroupHomomorphismByImages" Arg = ""/>
+    <Returns>
+      
+    </Returns>
+    <Description>
+      
+      <Example><![CDATA[]]></Example>
+    </Description>
+  </ManSection>
+<#/GAPDoc>
+<#GAPDoc Label="IsSemigroupHomomorphismByFunction">
+  <ManSection>
+    <Filt Name = "IsSemigroupHomomorphismByFunction" Arg = ""/>
+    <Returns>
+      
+    </Returns>
+    <Description>
+      
+      <Example><![CDATA[]]></Example>
+    </Description>
+  </ManSection>
+<#/GAPDoc>
+<#GAPDoc Label="ImageElm">
+  <ManSection>
+    <Oper Name = "ImageElm" Arg = ""/>
+    <Returns>
+      
+    </Returns>
+    <Description>
+      
+      <Example><![CDATA[]]></Example>
+    </Description>
+  </ManSection>
+<#/GAPDoc>
+<#GAPDoc Label="ImagesSource">
+  <ManSection>
+    <Oper Name = "ImagesSource" Arg = ""/>
+    <Returns>
+      
+    </Returns>
+    <Description>
+      
+      <Example><![CDATA[]]></Example>
+    </Description>
+  </ManSection>
+<#/GAPDoc>
+<#GAPDoc Label="PreImagesRange">
+  <ManSection>
+    <Oper Name = "PreImagesRange" Arg = ""/>
+    <Returns>
+      
+    </Returns>
+    <Description>
+      
+      <Example><![CDATA[]]></Example>
+    </Description>
+  </ManSection>
+<#/GAPDoc>
+<#GAPDoc Label="PreImagesRepresentative">
+  <ManSection>
+    <Oper Name = "PreImagesRepresentative" Arg = ""/>
+    <Returns>
+      
+    </Returns>
+    <Description>
+      
+      <Example><![CDATA[]]></Example>
+    </Description>
+  </ManSection>
+<#/GAPDoc>
+<#GAPDoc Label="PreImagesElm">
+  <ManSection>
+    <Oper Name = "PreImagesElm" Arg = ""/>
+    <Returns>
+      
+    </Returns>
+    <Description>
+      
+      <Example><![CDATA[]]></Example>
+    </Description>
+  </ManSection>
+<#/GAPDoc>
+<#GAPDoc Label="PreImagesSet">
+  <ManSection>
+    <Oper Name = "PreImagesSet" Arg = ""/>
+    <Returns>
+      
+    </Returns>
+    <Description>
+      
+      <Example><![CDATA[]]></Example>
+    </Description>
+  </ManSection>
+<#/GAPDoc>
+<#GAPDoc Label="ViewObj">
+  <ManSection>
+    <Oper Name = "ViewObj" Arg = ""/>
+    <Returns>
+      
+    </Returns>
+    <Description>
+      
+      <Example><![CDATA[]]></Example>
+    </Description>
+  </ManSection>
+<#/GAPDoc>
+<#GAPDoc Label="String">
+  <ManSection>
+    <Oper Name = "String" Arg = ""/>
+    <Returns>
+      
+    </Returns>
+    <Description>
+      
+      <Example><![CDATA[]]></Example>
+    </Description>
+  </ManSection>
+<#/GAPDoc>
+<#GAPDoc Label="PrintObj">
+  <ManSection>
+    <Oper Name = "PrintObj" Arg = ""/>
+    <Returns>
+      
+    </Returns>
+    <Description>
+      
+      <Example><![CDATA[]]></Example>
+    </Description>
+  </ManSection>
+<#/GAPDoc>
+<#GAPDoc Label="\=">
+  <ManSection>
+    <Oper Name = "" Arg = ""/>
+    <Returns>
+      
+    </Returns>
+    <Description>
+      
+      <Example><![CDATA[]]></Example>
+    </Description>
+  </ManSection>
+<#/GAPDoc>
+<#GAPDoc Label="IsSurjective">
+  <ManSection>
+    <Filt Name = "IsSurjective" Arg = ""/>
+    <Returns>
+      
+    </Returns>
+    <Description>
+      
+      <Example><![CDATA[]]></Example>
+    </Description>
+  </ManSection>
+<#/GAPDoc>
+<#GAPDoc Label="IsInjective">
+  <ManSection>
+    <Filt Name = "IsInjective" Arg = ""/>
+    <Returns>
+      
+    </Returns>
+    <Description>
+      
+      <Example><![CDATA[]]></Example>
+    </Description>
+  </ManSection>
+<#/GAPDoc>
+
+
+
+
