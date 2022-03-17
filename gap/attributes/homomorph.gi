@@ -233,5 +233,5 @@ end);
 InstallMethod(IsInjective, "for semigroup homom. by images",
   [IsSemigroupHomomorphismByImages],
 function(hom)
-  return Size(Source(hom)) <> Size(ImagesSource(hom));
+  return Size(Source(hom)) = Size(ImagesSource(hom));
 end);
