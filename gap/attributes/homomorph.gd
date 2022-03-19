@@ -12,6 +12,15 @@
 DeclareOperation("SemigroupHomomorphismByImages",
         [IsSemigroup, IsSemigroup, IsList, IsList]);
 
+DeclareOperation("SemigroupHomomorphismByImages",
+        [IsSemigroup, IsSemigroup, IsList]);
+
+DeclareOperation("SemigroupHomomorphismByImages",
+        [IsSemigroup, IsSemigroup]);
+
+DeclareOperation("SemigroupHomomorphismByImages",
+        [IsSemigroup, IsList, IsList]);
+
 DeclareOperation("SemigroupHomomorphismByImagesNC2",
         [IsSemigroup, IsSemigroup, IsList, IsList]);
 

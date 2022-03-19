@@ -15,7 +15,7 @@
 InstallMethod(SemigroupHomomorphismByImages, "for two semigroups and two lists",
 [IsSemigroup, IsSemigroup, IsList, IsList],
 function(S, T, gens, imgs)
-  local map, R, rel, genssem;
+  local map, R, rel;
 
   if Size(gens) <> Size(imgs) then
     ErrorNoReturn("the 3rd argument (a list) and the 4th argument ",
@@ -48,6 +48,31 @@ function(S, T, gens, imgs)
   od;
 
   return SemigroupHomomorphismByImagesNC2(S, T, gens, imgs);
+end);
+
+InstallMethod(SemigroupHomomorphismByImages, "for two semigroups and one list",
+[IsSemigroup, IsSemigroup, IsList],
+function(S, T, imgs)
+  local gens;
+  gens := GeneratorsOfSemigroup(S);
+  return SemigroupHomomorphismByImages(S, T, gens, imgs);
+end);
+
+InstallMethod(SemigroupHomomorphismByImages, "for two semigroups",
+[IsSemigroup, IsSemigroup],
+function(S, T)
+  local gens, imgs;
+  gens := GeneratorsOfSemigroup(S);
+  imgs := GeneratorsOfSemigroup(T);
+  return SemigroupHomomorphismByImages(S, T, gens, imgs);
+end);
+
+InstallMethod(SemigroupHomomorphismByImages, "for a semigroups and two lists",
+[IsSemigroup, IsList, IsList],
+function(S, gens, imgs)
+  local T;
+  T := Semigroup(imgs);
+  return SemigroupHomomorphismByImages(S, T, gens, imgs);
 end);
 
 InstallMethod(SemigroupHomomorphismByImagesNC2,
