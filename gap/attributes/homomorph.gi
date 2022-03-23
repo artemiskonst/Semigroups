@@ -11,6 +11,13 @@
 
 # This file contains a method for finding a homomorphism between semigroups
 #
+# TODO for Chin:
+# check every single function that we're meant to implement is somehow or teh other implement
+# and write tests for all of the ones that are missing
+# *ByFunction
+# Write tests for Kernel stuff
+# tests using FP semigroups  with relations added 
+# 
 
 InstallMethod(SemigroupHomomorphismByImages, "for two semigroups and two lists",
 [IsSemigroup, IsSemigroup, IsList, IsList],
@@ -233,6 +240,41 @@ function(hom)
   else
     return true;
   fi;
+end);
+
+DeclareAttribute("KernelOfSemigroupHomorphism", IsSemigroupHomomorphism);
+
+InstallMethod(KernelOfSemigroupHomorphism, "for SHBI",
+[IsSemigroupHomomorphism],
+function(map)
+  local S, cong, enum, x, y, pairs, i, j;
+
+  S := Source(map);
+  if IsBijective(map) then
+    return SemigroupCongruence(S, []);
+  elif Size(ImagesSource(map)) = 1 then
+    return UniversalSemigroupCongruence(S);
+  fi;
+
+  cong := SemigroupCongruence(S, []);
+  enum := EnumeratorCanonical(S);
+  for i in [1 .. Size(S) - 1] do
+    x := enum[i];
+    for j in [i + 1 .. Size(S)] do
+      y := enum[j];
+      if x ^ map = y ^ map then
+        if not [x, y] in cong then
+          pairs := ShallowCopy(GeneratingPairsOfSemigroupCongruence(cong));
+          Add(pairs, [x, y]);
+          cong := SemigroupCongruence(S, pairs);
+          if NrEquivalenceClasses(cong) = Size(ImagesSource(map)) then
+            return cong;
+          fi;
+        fi;
+      fi;
+    od;
+  od;
+  return fail;
 end);
 
 InstallMethod(IsInjective, "for semigroup homom. by images",

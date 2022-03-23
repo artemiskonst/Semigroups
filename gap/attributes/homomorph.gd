@@ -15,15 +15,11 @@ DeclareOperation("SemigroupHomomorphismByImages",
 DeclareOperation("SemigroupHomomorphismByImagesNC2",
         [IsSemigroup, IsSemigroup, IsList, IsList]);
 
-DeclareOperation("SemigroupHomomorphismByFunction",
+DeclareOperation("SemigroupHomomorphismByFunctionC",
         [IsSemigroup, IsSemigroup, IsFunction]);
 
 DeclareOperation("SemigroupHomomorphismByFunctionNC",
         [IsSemigroup, IsSemigroup, IsFunction]);
-
-DeclareRepresentation("IsSemigroupHomomorphism2", 
-	IsSemigroupGeneralMapping and IsAttributeStoringRep and
-	IsSingleValued and IsTotal, []);
 
 DeclareRepresentation("IsSemigroupHomomorphismByImages",
         IsSemigroupGeneralMapping and IsSPGeneralMapping and
