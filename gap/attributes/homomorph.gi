@@ -62,6 +62,31 @@ function(S, T, gens, imgs)
   return SemigroupHomomorphismByImagesNC2(S, T, gens, imgs);
 end);
 
+InstallMethod(SemigroupHomomorphismByImages, "for two semigroups and one list",
+[IsSemigroup, IsSemigroup, IsList],
+function(S, T, imgs)
+  local gens;
+  gens := GeneratorsOfSemigroup(S);
+  return SemigroupHomomorphismByImages(S, T, gens, imgs);
+end);
+
+InstallMethod(SemigroupHomomorphismByImages, "for two semigroups",
+[IsSemigroup, IsSemigroup],
+function(S, T)
+  local gens, imgs;
+  gens := GeneratorsOfSemigroup(S);
+  imgs := GeneratorsOfSemigroup(T);
+  return SemigroupHomomorphismByImages(S, T, gens, imgs);
+end);
+
+InstallMethod(SemigroupHomomorphismByImages, "for a semigroups and two lists",
+[IsSemigroup, IsList, IsList],
+function(S, gens, imgs)
+  local T;
+  T := Semigroup(imgs);
+  return SemigroupHomomorphismByImages(S, T, gens, imgs);
+end);
+
 InstallMethod(SemigroupHomomorphismByImagesNC2,
 "for two semigroups and two lists",
 [IsSemigroup, IsSemigroup, IsList, IsList],
@@ -125,11 +150,11 @@ end);
 
 InstallMethod(ImagesSource, "for SHBI",
     [IsSemigroupHomomorphismByImages],
-    hom -> SubsemigroupNC(Range(hom), MappingGeneratorsImages(hom)[2]));
+    hom -> Semigroup(MappingGeneratorsImages(hom)[2]));
 
 InstallMethod(PreImagesRange, "for SHBI",
     [IsSemigroupHomomorphismByImages],
-    hom -> SubsemigroupNC(Source(hom), MappingGeneratorsImages(hom)[1]));
+    hom -> Semigroup(MappingGeneratorsImages(hom)[1]));
 
 InstallMethod(PreImagesRepresentative,
 "for a semigroup homom. by images and an element in the range",
@@ -239,11 +264,13 @@ end);
 InstallMethod(IsSurjective, "for semigroup homom. by images",
   [IsSemigroupHomomorphismByImages],
 function(hom)
-  if Size(ImagesSource(hom)) <> Size(Range(hom)) then
-    return false;
-  else
-    return true;
-  fi;
+  return Size(ImagesSource(hom)) = Size(Range(hom));
+end);
+
+InstallMethod(IsInjective, "for semigroup homom. by images",
+  [IsSemigroupHomomorphismByImages],
+function(hom)
+  return Size(Source(hom)) = Size(ImagesSource(hom));
 end);
 
 InstallMethod(KernelOfSemigroupHomorphism, "for SHBI",
@@ -277,14 +304,4 @@ function(map)
     od;
   od;
   return fail;
-end);
-
-InstallMethod(IsInjective, "for semigroup homom. by images",
-  [IsSemigroupHomomorphismByImages],
-function(hom)
-  if Size(Source(hom)) <> Size(ImagesSource(hom)) then
-    return false;
-  else
-    return true;
-  fi;
 end);
