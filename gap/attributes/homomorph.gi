@@ -246,8 +246,6 @@ function(hom)
   fi;
 end);
 
-DeclareAttribute("KernelOfSemigroupHomorphism", IsSemigroupHomomorphism);
-
 InstallMethod(KernelOfSemigroupHomorphism, "for SHBI",
 [IsSemigroupHomomorphism],
 function(map)

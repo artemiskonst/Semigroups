@@ -28,3 +28,5 @@ DeclareRepresentation("IsSemigroupHomomorphismByImages",
 DeclareRepresentation("IsSemigroupHomomorphismByFunction",
         IsSemigroupGeneralMapping and IsSPMappingByFunctionRep and
         IsAttributeStoringRep and IsSingleValued and IsTotal, []);
+
+DeclareAttribute("KernelOfSemigroupHomorphism", IsSemigroupHomomorphism);
