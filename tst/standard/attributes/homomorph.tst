@@ -464,17 +464,17 @@ gap> images2 := [images2[3], images2[1], images2[2]];
   Transformation( [ 4, 5, 5, 1, 5, 5, 1 ] ), 
   Transformation( [ 5, 5, 5, 5, 5, 5, 2 ] ) ]
 gap> hom3 := SemigroupHomomorphismByImages(S, K, gens2, images2);
-[ Transformation( [ 2, 5, 3, 5, 3 ] ), Transformation( [ 2, 1, 5, 1, 5 ] ), 
-  Transformation( [ 1, 1, 1, 5, 3 ] ) ] -> 
-[ Transformation( [ 6, 5, 5, 3, 5, 5, 3 ] ), 
-  Transformation( [ 4, 5, 5, 1, 5, 5, 1 ] ), 
-  Transformation( [ 5, 5, 5, 5, 5, 5, 2 ] ) ]
+[ Transformation( [ 2, 1, 5, 1, 5 ] ), Transformation( [ 1, 1, 1, 5, 3 ] ), 
+  Transformation( [ 2, 5, 3, 5, 3 ] ) ] -> 
+[ Transformation( [ 4, 5, 5, 1, 5, 5, 1 ] ), 
+  Transformation( [ 5, 5, 5, 5, 5, 5, 2 ] ), 
+  Transformation( [ 6, 5, 5, 3, 5, 5, 3 ] ) ]
 gap> BruteForceHomoCheck(hom3);
 true
 gap> String(hom3);
-"[ Transformation( [ 2, 5, 3, 5, 3 ] ), Transformation( [ 2, 1, 5, 1, 5 ] ), T\
-ransformation( [ 1, 1, 1, 5, 3 ] ) ] -> [ Transformation( [ 6, 5, 5, 3, 5, 5, \
-3 ] ), Transformation( [ 4, 5, 5, 1, 5, 5, 1 ] ), Transformation( [ 5, 5, 5, 5\
-, 5, 5, 2 ] ) ]"
+"[ Transformation( [ 2, 1, 5, 1, 5 ] ), Transformation( [ 1, 1, 1, 5, 3 ] ), T\
+ransformation( [ 2, 5, 3, 5, 3 ] ) ] -> [ Transformation( [ 4, 5, 5, 1, 5, 5, \
+1 ] ), Transformation( [ 5, 5, 5, 5, 5, 5, 2 ] ), Transformation( [ 6, 5, 5, 3\
+, 5, 5, 3 ] ) ]"
 gap> SEMIGROUPS.StopTest();
 gap> STOP_TEST("Semigroups package: standard/attributes/homomorph.tst");
